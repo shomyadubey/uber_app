@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ride Planner</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f2f2f2;
+}
+
+/* CARD */
+.card {
+    width: 420px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
+}
+
+h2 {
+    text-align: center;
+}
+
+/* INPUT GROUP */
+.input-group {
+    margin-top: 15px;
+}
+
+label {
+    color: gray;
+    font-size: 14px;
+}
+
+select, input {
+    width: 100%;
+    padding: 14px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 20px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #333;
+}
+
+/* MAP */
+.map-container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+/* LEGEND */
+.legend {
+    width: 220px;
+    margin: 10px auto;
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 10px gray;
+}
+</style>
+</head>
+
+<body>
+
+<!-- CARD -->
+<div class="card">
+
+<h2>🚖 Plan Your Ride</h2>
+
+<form action="/result" method="post">
+
+<div class="input-group">
+<label>📍 Select Pickup Area</label>
+<select name="location">
+{% for loc in locations %}
+<option value="{{ loc }}">Area {{ loc }}</option>
+{% endfor %}
+</select>
+</div>
+
+<div class="input-group">
+<label>⏰ Select Time</label>
+<input type="number" name="hour" placeholder="Enter hour (0–23)" required>
+</div>
+
+<button>🚀 Check Availability</button>
+
+</form>
+
+<p style="text-align:center; color:gray; margin-top:10px;">
+Get real-time ride insights and pricing
+</p>
+
+</div>
+
+<!-- MAP -->
+<div class="map-container">
+<iframe src="/static/map.html" width="100%" height="500" style="border:none; border-radius:15px;"></iframe>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+<b>Traffic Levels</b><br>
+🔴 High Demand<br>
+🟠 Moderate Demand<br>
+🟢 Low Demand
+</div>
+
+</body>
+</html>
